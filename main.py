@@ -205,5 +205,5 @@ async def clear_error(ctx, error):
 	if isinstance(error, commands.MissingPermissions):
 		await ctx.send('**Bruh, No.**')
 
-
+#Create a key named "TOKEN" if in Replit and add token as the value, and if you're working on local IDE use bot.run('TOKEN') where 'TOKEN' is your discord bot token
 bot.run(os.environ['TOKEN'])
