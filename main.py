@@ -14,7 +14,7 @@ bot = commands.Bot(owner_id=327160726181511171,
                    intents=intents,
                    command_prefix="+")
 
-
+#AYO I'M IN
 @bot.event
 async def on_ready():
 	print('connecting...')
