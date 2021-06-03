@@ -1,3 +1,4 @@
+#bred ps. yum was here
 import asyncio
 from cowpy import cow
 from pyrandmeme import *
@@ -14,7 +15,7 @@ bot = commands.Bot(owner_id=327160726181511171,
                    intents=intents,
                    command_prefix="+")
 
-
+#AYO I'M IN
 @bot.event
 async def on_ready():
 	print('connecting...')
@@ -211,5 +212,5 @@ async def clear_error(ctx, error):
 	if isinstance(error, commands.MissingPermissions):
 		await ctx.send('**Bruh, No.**')
 
-
+#Create a key named "TOKEN" if in Replit and add token as the value, and if you're working on local IDE use bot.run('TOKEN') where 'TOKEN' is your discord bot token
 bot.run(os.environ['TOKEN'])
