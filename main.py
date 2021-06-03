@@ -37,8 +37,6 @@ async def hello(ctx):
 		await asyncio.sleep(5)
 		await ctx.reply(content="Hey", mention_author=False)
 
-#https://giphy.com/gifs/cat-animal-ping-pong-fvA1ieS8rEV8Y
-
 @bot.command(name="ping")
 async def ping(ctx):
 	bed = discord.Embed(description=(f"Pong! {round(bot.latency * 1000)}ms"))
@@ -46,6 +44,14 @@ async def ping(ctx):
 	bed.set_image(url="https://media1.giphy.com/media/fvA1ieS8rEV8Y/giphy.gif?cid=6c09b9529236fdd69005de10fc4ab1efde32902c66643e24&rid=giphy.gif&ct=g"
 	)
 	await ctx.send(embed=bed, delete_after=3)
+
+@bot.command(name="sheeesh")
+async def sheeesh(ctx):
+	bed = discord.Embed(description=(f"Sheeesh"))
+	bed.set_footer(text="das realy cool bro", icon_url=ctx.author.avatar_url)
+	bed.set_image(url="https://media1.tenor.com/images/7627864f2888cead2c6d5c94dd142126/tenor.gif?itemid=21479305"
+	)
+	await ctx.send(embed=bed, delete_after=5)
 
 @bot.command(name="uhd")
 async def uhd(ctx):
