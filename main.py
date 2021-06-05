@@ -31,12 +31,13 @@ async def on_ready():
 	                              type=discord.ActivityType.watching))
 
 #AYO I'M IN
+#basic hello command
 @bot.command(name="hello")
 async def hello(ctx):
 	async with ctx.channel.typing():
 		await asyncio.sleep(5)
 		await ctx.reply(content="Hey", mention_author=False)
-
+#shows bot ping
 @bot.command(name="ping")
 async def ping(ctx):
 	bed = discord.Embed(description=(f"Pong! {round(bot.latency * 1000)}ms"))
@@ -44,12 +45,12 @@ async def ping(ctx):
 	bed.set_image(url="https://media1.giphy.com/media/fvA1ieS8rEV8Y/giphy.gif?cid=6c09b9529236fdd69005de10fc4ab1efde32902c66643e24&rid=giphy.gif&ct=g"
 	)
 	await ctx.send(embed=bed, delete_after=3)
-
+#shows mentioned user avatar
 @bot.command(name="avatar")
 async def avatar(ctx, *,  avamember : discord.Member=None):
     userAvatarUrl = avamember.avatar_url
     await ctx.send(userAvatarUrl)
-
+#SHEEEEESH
 @bot.command(name="sheeesh")
 async def sheeesh(ctx):
 	bed = discord.Embed(description=(f"Sheeesh"))
@@ -57,7 +58,7 @@ async def sheeesh(ctx):
 	bed.set_image(url="https://media1.tenor.com/images/7627864f2888cead2c6d5c94dd142126/tenor.gif?itemid=21479305"
 	)
 	await ctx.send(embed=bed, delete_after=5)
-
+#caught in 4k meme
 @bot.command(name="uhd")
 async def uhd(ctx):
 	bed = discord.Embed(colour=0x6b9aba, timestamp=ctx.message.created_at)
@@ -68,7 +69,7 @@ async def uhd(ctx):
 	await ctx.send(embed=bed)
 	await ctx.message.add_reaction("✔️")
 
-
+#template embed for future use
 @bot.command(name="embed-template")
 async def embed(ctx):
 	bed = discord.Embed(title="test embed",
@@ -95,7 +96,7 @@ async def embed(ctx):
 
 	await ctx.send(embed=bed)
 
-
+#cowsay
 @bot.command(name="cowsay")
 async def cowsay(ctx, *, message):
 	moo = cow.Cowacter(eyes="default", thoughts=True, tongue=True, body=None)
@@ -108,7 +109,7 @@ async def cowsay(ctx, *, message):
 
 	await ctx.send(embed=fun_bed)
 
-
+#Mute command by The World Of PC
 @bot.command(description="Mutes the specified user.")
 @commands.has_permissions(manage_messages=True)
 async def mute(ctx, member: discord.Member, *, reason=None):
@@ -133,7 +134,7 @@ async def mute(ctx, member: discord.Member, *, reason=None):
 	await member.send(
 	    f" you have been muted from: {guild.name} reason: {reason}")
 
-
+#connected to mute command, displays the error if something is wrong
 @mute.error
 async def mute_error(ctx, error):
 	if isinstance(error, commands.MissingPermissions):
@@ -145,7 +146,7 @@ async def mute_error(ctx, error):
 		await ctx.send(f'pff u thought {ctx.author.mention}')
 		await ctx.send(embed=embed)
 
-
+#ban command
 @bot.command(name="ban")
 @commands.has_permissions(ban_members=True)
 async def ban(ctx, member: discord.Member, *, reason=None):
@@ -156,7 +157,7 @@ async def ban(ctx, member: discord.Member, *, reason=None):
 	                      color=0xBC0000)
 	await ctx.send(embed=embed)
 
-
+#kick command
 @bot.command(name="kick")
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, member: discord.Member, *, reason=None):
@@ -167,12 +168,12 @@ async def kick(ctx, member: discord.Member, *, reason=None):
 	                      color=0xff00f6)
 	await ctx.send(embed=embed)
 
-
+#shows random memes
 @bot.command(name="meme")
 async def meme(ctx):
 	await ctx.send(embed=await pyrandmeme())
 
-
+#displays informations about the mentioned user
 @bot.command(aliases=["whois"])
 async def userinfo(ctx, member: discord.Member = None):
 	if not member:  # if member is no mentioned
@@ -200,7 +201,7 @@ async def userinfo(ctx, member: discord.Member = None):
 	print(member.top_role.mention)
 	await ctx.send(embed=embed)
 
-
+#basic clear command
 @commands.bot_has_guild_permissions(manage_messages=True)
 @commands.has_guild_permissions(manage_messages=True)
 @bot.command(name="clear")
@@ -210,7 +211,7 @@ async def clear(ctx, amount=0):
 		await ctx.channel.purge(limit=amount + 1)
 		await ctx.send("**Messages has been yeeted!**", delete_after=3)
 
-
+#basic clear error, displays if user has no premissions
 @clear.error
 async def clear_error(ctx, error):
 	if isinstance(error, commands.MissingPermissions):
