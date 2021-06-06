@@ -45,6 +45,11 @@ async def ping(ctx):
 	)
 	await ctx.send(embed=bed, delete_after=3)
 
+@bot.command(name="avatar")
+async def avatar(ctx, *,  avamember : discord.Member=None):
+    userAvatarUrl = avamember.avatar_url
+    await ctx.send(userAvatarUrl)
+
 @bot.command(name="sheeesh")
 async def sheeesh(ctx):
 	bed = discord.Embed(description=(f"Sheeesh"))
