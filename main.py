@@ -1,4 +1,3 @@
-#bred ps. yum was here
 import asyncio
 from cowpy import cow
 from pyrandmeme import *
@@ -15,7 +14,7 @@ bot = commands.Bot(owner_id=327160726181511171,
                    intents=intents,
                    command_prefix="+")
 
-#AYO I'M IN
+#bred ps. yum was here
 @bot.event
 async def on_ready():
 	print('connecting...')
@@ -28,10 +27,10 @@ async def on_ready():
 	print('online!')
 	await bot.change_presence(status=discord.Status.dnd,
 	                          activity=discord.Activity(
-	                              name="Insomia <.<",
+	                              name="Ping Pong, xiaoping",
 	                              type=discord.ActivityType.watching))
 
-
+#AYO I'M IN
 @bot.command(name="hello")
 async def hello(ctx):
 	async with ctx.channel.typing():
@@ -65,7 +64,7 @@ async def uhd(ctx):
 	await ctx.message.add_reaction("✔️")
 
 
-@bot.command(name="embed")
+@bot.command(name="embed-template")
 async def embed(ctx):
 	bed = discord.Embed(title="test embed",
 	                    description="still nid to learn ~Insomia",
