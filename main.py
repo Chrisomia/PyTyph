@@ -32,26 +32,31 @@ async def on_ready():
 
 #AYO I'M IN
 #basic hello command
-@bot.command(name="hello")
+@bot.command(name="hello", help="reply test")
 async def hello(ctx):
 	async with ctx.channel.typing():
 		await asyncio.sleep(5)
 		await ctx.reply(content="Hey", mention_author=False)
+
 #shows bot ping
-@bot.command(name="ping")
+@bot.command(name="ping", help="shows current bot ping")
 async def ping(ctx):
 	bed = discord.Embed(description=(f"Pong! {round(bot.latency * 1000)}ms"))
 	bed.set_footer(text="Ping test", icon_url=ctx.author.avatar_url)
 	bed.set_image(url="https://media1.giphy.com/media/fvA1ieS8rEV8Y/giphy.gif?cid=6c09b9529236fdd69005de10fc4ab1efde32902c66643e24&rid=giphy.gif&ct=g"
 	)
 	await ctx.send(embed=bed, delete_after=3)
+
 #shows mentioned user avatar
-@bot.command(name="avatar")
-async def avatar(ctx, *,  avamember : discord.Member=None):
-    userAvatarUrl = avamember.avatar_url
-    await ctx.send(userAvatarUrl)
+@bot.command(name='avatar', help='fetch avatar of a user')
+async def dp(ctx, *, member: discord.Member = None):
+    if not member:
+        member = ctx.message.author
+    userAvatar = member.avatar_url
+    await ctx.send(userAvatar)
+
 #SHEEEEESH
-@bot.command(name="sheeesh")
+@bot.command(name="sheeesh", help="displays Sheeesh gif")
 async def sheeesh(ctx):
 	bed = discord.Embed(description=(f"Sheeesh"))
 	bed.set_footer(text="das realy cool bro", icon_url=ctx.author.avatar_url)
@@ -59,7 +64,7 @@ async def sheeesh(ctx):
 	)
 	await ctx.send(embed=bed, delete_after=5)
 #caught in 4k meme
-@bot.command(name="uhd")
+@bot.command(name="uhd", help="caught in 4k gif")
 async def uhd(ctx):
 	bed = discord.Embed(colour=0x6b9aba, timestamp=ctx.message.created_at)
 	bed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
@@ -70,7 +75,7 @@ async def uhd(ctx):
 	await ctx.message.add_reaction("✔️")
 
 #template embed for future use
-@bot.command(name="embed-template")
+@bot.command(name="embed-template", help="embed template for future use")
 async def embed(ctx):
 	bed = discord.Embed(title="test embed",
 	                    description="still nid to learn ~Insomia",
@@ -97,7 +102,7 @@ async def embed(ctx):
 	await ctx.send(embed=bed)
 
 #cowsay
-@bot.command(name="cowsay")
+@bot.command(name="cowsay", help="is cowsay, u know this cow")
 async def cowsay(ctx, *, message):
 	moo = cow.Cowacter(eyes="default", thoughts=True, tongue=True, body=None)
 	msg = moo.milk(msg=message)
@@ -110,7 +115,7 @@ async def cowsay(ctx, *, message):
 	await ctx.send(embed=fun_bed)
 
 #Mute command by The World Of PC
-@bot.command(description="Mutes the specified user.")
+@bot.command(description="Mutes the specified user.", help="mutes the desired user")
 @commands.has_permissions(manage_messages=True)
 async def mute(ctx, member: discord.Member, *, reason=None):
 	guild = ctx.guild
@@ -147,7 +152,7 @@ async def mute_error(ctx, error):
 		await ctx.send(embed=embed)
 
 #ban command
-@bot.command(name="ban")
+@bot.command(name="ban", help="bans the mentioned user with reason")
 @commands.has_permissions(ban_members=True)
 async def ban(ctx, member: discord.Member, *, reason=None):
 	await member.ban(reason=reason)
@@ -158,7 +163,7 @@ async def ban(ctx, member: discord.Member, *, reason=None):
 	await ctx.send(embed=embed)
 
 #kick command
-@bot.command(name="kick")
+@bot.command(name="kick", help="kicks the mentioned user with reason")
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, member: discord.Member, *, reason=None):
 	await member.kick(reason=reason)
@@ -169,12 +174,12 @@ async def kick(ctx, member: discord.Member, *, reason=None):
 	await ctx.send(embed=embed)
 
 #shows random memes
-@bot.command(name="meme")
+@bot.command(name="meme", help="shows random memes")
 async def meme(ctx):
 	await ctx.send(embed=await pyrandmeme())
 
 #displays informations about the mentioned user
-@bot.command(aliases=["whois"])
+@bot.command(aliases=["whois"], help="who is dat command")
 async def userinfo(ctx, member: discord.Member = None):
 	if not member:  # if member is no mentioned
 		member = ctx.message.author  # set member as the author
@@ -204,7 +209,7 @@ async def userinfo(ctx, member: discord.Member = None):
 #basic clear command
 @commands.bot_has_guild_permissions(manage_messages=True)
 @commands.has_guild_permissions(manage_messages=True)
-@bot.command(name="clear")
+@bot.command(name="clear", help="clears set ammount of messanges")
 async def clear(ctx, amount=0):
 	if (ctx.message.author.permissions_in(
 	    ctx.message.channel).manage_messages):
