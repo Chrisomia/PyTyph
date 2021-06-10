@@ -1,6 +1,8 @@
 import asyncio
 from cowpy import cow
 from pyrandmeme import *
+from discord.ext.commands import Bot
+from discord_components import DiscordComponents, Button, ButtonStyle, InteractionType
 import os
 #Thank you very much yumyum, and The World Of PC for helping me creat dis
 #   yum - np <3 😋
@@ -48,12 +50,15 @@ async def ping(ctx):
 	await ctx.send(embed=bed, delete_after=3)
 
 #shows mentioned user avatar
-@bot.command(name='avatar', help='fetch avatar of a user')
-async def dp(ctx, *, member: discord.Member = None):
-    if not member:
-        member = ctx.message.author
-    userAvatar = member.avatar_url
-    await ctx.send(userAvatar)
+@bot.command(name='av', help='fetch avatar of a user')
+async def avatar(ctx, member: discord.Member = None):
+    if member == None:
+        member = ctx.author
+    else:
+        member = member
+    bed = discord.Embed(title=member.display_name)
+    bed.set_image(url=member.avatar_url)
+    await ctx.send(embed=bed)
 
 #SHEEEEESH
 @bot.command(name="sheeesh", help="displays Sheeesh gif")
@@ -222,5 +227,7 @@ async def clear_error(ctx, error):
 	if isinstance(error, commands.MissingPermissions):
 		await ctx.send('**Bruh, No.**')
 
+
 #Create a key named "TOKEN" if in Replit and add token as the value, and if you're working on local IDE use bot.run('TOKEN') where 'TOKEN' is your discord bot token
 bot.run(os.environ['TOKEN'])
+
