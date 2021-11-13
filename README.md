@@ -1,4 +1,4 @@
-# Typh Simp Discord Bot
+# PyTyph Discord Bot
 
 Discord Bot made by me when I was bored and had nothing better to do.
 Use in Replit for flawless functioning
