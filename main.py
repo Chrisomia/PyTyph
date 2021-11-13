@@ -16,13 +16,13 @@ import time
 from cowpy import cow
 from discord.ext.commands import Bot
 from discord_components import DiscordComponents, Button, ButtonStyle, InteractionType
-#Thank you very much yumyum, and The World Of PC for helping me creat dis
+#Thank you very much yumyum for helping me creat dis
 #   yum - np <3 😋
 
 
 intents = discord.Intents.default()
-description = "Bot made while my Insomia was kickin in"
-bot = commands.Bot(owner_id=327160726181511171,
+description = "Python bot made by Angel, Prefix '+', Have a beautiful and relaxing day"
+bot = commands.Bot(owner_id=902337698663116810,
                    description=description,
                    intents=intents,
                    command_prefix="+")
@@ -39,10 +39,10 @@ async def on_ready():
 
 	await bot.wait_until_ready()
 	print('online!')
-	await bot.change_presence(status=discord.Status.dnd,
+	await bot.change_presence(status=discord.Status.online,
 	                          activity=discord.Activity(
-	                              name="with @everyone",
-	                              type=discord.ActivityType.watching))
+	                              name="chill out | prefix'+'",
+	                              type=discord.ActivityType.listening))
 
 
 #AYO I'M IN
